@@ -4,7 +4,7 @@ import { cartActions } from '../../Store/cart';
 import { useSelector } from 'react-redux';
 const CartButton = (props) => {
   const dispatch = useDispatch()
-  const cart = useSelector(state=> state.cart)
+  
   const cartNumber = useSelector(state=> state.cart.items.length)
   const cartHandler = ()=>{
     dispatch(cartActions.toggleCart())
