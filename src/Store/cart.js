@@ -7,6 +7,9 @@ const cartSlice = createSlice({
         items : [],
     },
     reducers : {
+        initializeCart(state, action){
+            state.items = action.payload
+        },
         toggleCart(state){
             state.showCart = !state.showCart
         },

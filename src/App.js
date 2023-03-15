@@ -6,12 +6,22 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { notificationAction } from './Store/notification';
+import { cartActions } from './Store/cart';
 
 let isInitial = true
 function App() {
   const showCart = useSelector(state=> state.cart.showCart)
   const cart = useSelector(state => state.cart.items)
   const dispatch = useDispatch()
+  const initializeCart = async ()=>{
+    const res = await axios.get('https://cart-redux-toolkit-default-rtdb.firebaseio.com/cart.json')
+    console.log(res.data)
+    
+    dispatch(cartActions.initializeCart(res.data))
+  }
+  useEffect(()=>{
+    initializeCart()
+  },[])
   useEffect(()=>{
     if (isInitial){
       isInitial = false
